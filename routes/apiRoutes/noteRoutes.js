@@ -16,20 +16,23 @@ router.get('/notes/:id', (req,res) => {
 
 // post a new note
 router.post('/notes', (req, res) => {
-    req.body.id = Data.now().toString();
-    if (!validateNote(req.body)) {
-        res.status(400).send('The note is not properly formatted.')
-    }
-    else {
-        const note = createNewNote(req.body, notes);
-        console.log(note);
-        res.json(note);
-    }
+    req.body.id = Date.now().toString();
+    const note = createNewNote(req.body, notes);
+    console.log(note);
+    res.json(note);
+    // if (!validateNote(req.body)) {
+    //     res.status(400).send('The note is not properly formatted.')
+    // }
+    // else {
+    //     const note = createNewNote(req.body, notes);
+    //     console.log(note);
+    //     res.json(note);
+    // }
 });
 
 // deleting a note
 router.delete('/notes/:id', (req,res) => {
-    const.note = deleteByID(req.params.id, notes);
+    const note = deleteByID(req.params.id, notes);
     res.json(note);
 });
 
