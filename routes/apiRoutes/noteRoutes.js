@@ -1,10 +1,11 @@
 const router = require('express').Router();
 
-const { deleteByID, findByID, createNewNote, validateNote, findBYID} = require('../../lib/notes');
-const { notes } = require('../../db/db');
-
+const { deleteByID, createNewNote, validateNote, findBYID} = require('../../lib/notes');
+const { notes } = require('../../db/db.json');
+console.log(notes);
 // getting all notes to json
 router.get('/notes', (req, res) => {
+    console.log(notes);
     res.json(notes);
 });
 
@@ -17,17 +18,14 @@ router.get('/notes/:id', (req,res) => {
 // post a new note
 router.post('/notes', (req, res) => {
     req.body.id = Date.now().toString();
-    const note = createNewNote(req.body, notes);
-    console.log(note);
-    res.json(note);
-    // if (!validateNote(req.body)) {
-    //     res.status(400).send('The note is not properly formatted.')
-    // }
-    // else {
-    //     const note = createNewNote(req.body, notes);
-    //     console.log(note);
-    //     res.json(note);
-    // }
+    
+    if (!validateNote(req.body)) {
+        res.status(400).send('The note is not properly formatted.');
+    }
+    else {
+        const note = createNewNote(req.body, notes);
+        res.json(note);
+    }
 });
 
 // deleting a note
