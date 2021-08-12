@@ -30,3 +30,7 @@
 
 ![image](https://user-images.githubusercontent.com/79431276/129138088-14093443-3ab4-4bc8-9028-13f0abaa9310.png)
 
+## GitHub Repository link: https://github.com/sudbatra/note-taker
+
+## Deployed Heroku Link: https://sud-note-taker.herokuapp.com/
+
